@@ -1,0 +1,18 @@
+search_user_By_Department:
+    path: /user/search/department/{id_department}
+    controller: App\Infrastructure\Controller\User\UserSearch\ShowUserByDepartmentController::showUserByDepartment
+search_user_By_Sub_Departments:
+    path: /user/search/subDepartment/{id_subDepartment}
+    controller: App\Infrastructure\Controller\User\UserSearch\ShowUserBySubDepartmentController::showUserBySubDepartment
+
+search_user_By_Name:
+    path: /user/search/name/{name}
+    controller: App\Infrastructure\Controller\User\UserSearch\ShowUserByNameController::showUserByName
+
+search_user_By_Employee_Code:
+    path: /user/search/employeeCode/{employee_code}
+    controller: App\Infrastructure\Controller\User\UserSearch\ShowUserByEmployeeCodeController::showUserByEmployeeCode
+search_all_users:
+    path: /user/search/{page}/{limit}
+    controller: App\Infrastructure\Controller\User\UserSearch\ShowAllUsersController::showAllUsers
+    defaults: { page : 1, limit : 10}

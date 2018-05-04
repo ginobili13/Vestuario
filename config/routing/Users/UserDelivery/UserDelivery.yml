@@ -1,0 +1,3 @@
+userDelivery:
+    path: /user/delivery/{id_user}
+    controller: App\Infrastructure\Controller\User\UserDelivery\UserDeliveryController::userDelivery

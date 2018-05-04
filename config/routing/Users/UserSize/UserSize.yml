@@ -1,0 +1,3 @@
+user_Size:
+    path: /user/size/{id_user}
+    controller: App\Infrastructure\Controller\User\UserSize\UserSizeController::userSize

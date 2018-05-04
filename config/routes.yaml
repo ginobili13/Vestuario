@@ -1,0 +1,11 @@
+App_search:
+    resource: 'routing/Users/UserSearch/UserSearch.yml'
+App_size:
+    resource: 'routing/Users/UserSize/UserSize.yml'
+App_delivery:
+    resource: 'routing/Users/UserDelivery/UserDelivery.yml'
+App_create_delivery:
+    path: '/create/delivery/{date_delivery}/{id_clothe}/{quantity}/{user_id}'
+    controller: App\Infrastructure\Controller\User\UserDelivery\CreateUserDeliveryController::execute
+
+
