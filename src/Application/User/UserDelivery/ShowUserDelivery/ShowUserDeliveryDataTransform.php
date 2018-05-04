@@ -9,9 +9,10 @@
 namespace App\Application\User\UserDelivery\ShowUserDelivery;
 
 
+use App\Application\User\DataTransformInterface;
 use App\Domain\Model\Entity\UserDeliveries;
 
-class ShowUserDeliveryDataTransform
+class ShowUserDeliveryDataTransform implements DataTransformInterface
 {
     /**
      * @param array|UserDeliveries[] $userDeliveries

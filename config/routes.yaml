@@ -8,6 +8,5 @@ App_create_delivery:
     resource: 'routing/Users/UserDelivery/CreateUserDelivery.yml'
 App_delete_delivery:
     resource: 'routing/Users/UserDelivery/DeleteUserDelivery.yml'
-delete_userDelivery:
-    path: '/set/userSize/{userSize_id}/{size}'
-    controller: App\Infrastructure\Controller\User\UserSize\SetUserSizeController::setUserSize
+App_set_userSize:
+    resource: 'routing/Users/UserSize/SetUserSize.yml'

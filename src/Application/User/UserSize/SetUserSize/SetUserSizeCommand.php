@@ -18,7 +18,6 @@ class SetUserSizeCommand
 
     public function __construct($userSizeId, $userSize)
     {
-        Assertion::notBlank($userSize,'Debe introducir un valor');
         $this->userSize = $userSize;
 
         Assertion::notBlank($userSizeId,'Debe introducir un valor');
@@ -42,3 +41,4 @@ class SetUserSizeCommand
         return $this->userSizeId;
     }
 }
+

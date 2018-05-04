@@ -8,9 +8,10 @@
 
 namespace App\Application\User\UserSearch\ShowUserByName;
 
+use App\Application\User\DataTransformInterface;
 use App\Domain\Model\Entity\Users;
 
-class ShowUserByNameDataTransform
+class ShowUserByNameDataTransform implements DataTransformInterface
 {
     /**
      * @param array|Users[] $users

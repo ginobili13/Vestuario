@@ -8,9 +8,10 @@
 
 namespace App\Application\User\UserSize\ShowUserSize;
 
+use App\Application\User\DataTransformInterface;
 use App\Domain\Model\Entity\UserSizes;
 
-class ShowUserSizeDataTransform
+class ShowUserSizeDataTransform implements DataTransformInterface
 {
         /**
          * @param array|UserSizes[] $userSizes

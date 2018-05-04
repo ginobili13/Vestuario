@@ -8,9 +8,10 @@
 
 namespace App\Application\User\UserSearch\ShowUserByEmployeeCode;
 
+use App\Application\User\DataTransformInterface;
 use App\Domain\Model\Entity\Users;
 
-class ShowUserByEmployeeCodeDataTransform
+class ShowUserByEmployeeCodeDataTransform implements DataTransformInterface
 {
     /**
      * @param array|Users[] $users
