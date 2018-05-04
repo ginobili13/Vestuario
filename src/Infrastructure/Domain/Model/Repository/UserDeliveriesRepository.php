@@ -81,29 +81,32 @@ class UserDeliveriesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    /**
+     * @param UserDeliveries $userDeliveries
+     * @return UserDeliveries
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function createUserDelivery(UserDeliveries $userDeliveries)
     {
-        try {
-            $this->getEntityManager()->persist($userDeliveries);
-        } catch (ORMException $e) {
-        }
-        try {
-            $this->getEntityManager()->flush();
-        } catch (OptimisticLockException $e) {
-        } catch (ORMException $e) {
-        }
+        $this->getEntityManager()->persist($userDeliveries);
+
+        $this->getEntityManager()->flush();
 
         return $userDeliveries;
     }
 
+    /**
+     * @param $idUserDelivery
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function DeleteUserDelivery($idUserDelivery)
     {
         $userDelivery = $this->find($idUserDelivery);
 
-        try {
-            $this->getEntityManager()->remove($userDelivery);
-        } catch (ORMException $e) {
-        }
+        $this->getEntityManager()->remove($userDelivery);
+
 
         $this->getEntityManager()->flush();
     }

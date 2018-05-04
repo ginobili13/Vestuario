@@ -15,6 +15,11 @@ class ShowUserSizeCommand
 {
     private $id_user;
 
+    /**
+     * ShowUserSizeCommand constructor.
+     * @param $id_user
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($id_user)
     {
         $this->id_user = $id_user;

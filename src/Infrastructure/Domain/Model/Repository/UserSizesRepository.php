@@ -26,6 +26,11 @@ class UserSizesRepository extends ServiceEntityRepository
         parent:: __construct($registry, UserSizes::class);
     }
 
+    /**
+     * @param $id
+     * @return UserSizes|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getUserSize($id): ?UserSizes
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
@@ -42,6 +47,10 @@ class UserSizesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function updateUserSize()
     {
         $this->getEntityManager()->flush();

@@ -14,6 +14,11 @@ class ShowUserByNameCommand
 {
     private $name;
 
+    /**
+     * ShowUserByNameCommand constructor.
+     * @param $name
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($name)
     {
         $this->name = $name;

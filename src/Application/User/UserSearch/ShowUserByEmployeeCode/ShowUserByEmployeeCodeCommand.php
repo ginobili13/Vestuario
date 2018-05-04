@@ -14,6 +14,11 @@ class ShowUserByEmployeeCodeCommand
 {
     private $employee_code;
 
+    /**
+     * ShowUserByEmployeeCodeCommand constructor.
+     * @param $employee_code
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($employee_code)
     {
         $this->employee_code = $employee_code;

@@ -14,6 +14,11 @@ class ShowUserBySubDepartmentsCommand
 {
     private $id_subDepartment;
 
+    /**
+     * ShowUserBySubDepartmentsCommand constructor.
+     * @param $id_subDepartment
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($id_subDepartment)
     {
         $this->id_subDepartment = $id_subDepartment;

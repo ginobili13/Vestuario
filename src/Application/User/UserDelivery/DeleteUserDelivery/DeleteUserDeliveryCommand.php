@@ -15,6 +15,11 @@ class DeleteUserDeliveryCommand
 {
     private $delivery_id;
 
+    /**
+     * DeleteUserDeliveryCommand constructor.
+     * @param $deliveryId
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($deliveryId)
     {
         Assertion::notBlank($deliveryId,'Debe introducir un valor');

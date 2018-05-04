@@ -16,6 +16,12 @@ class SetUserSizeCommand
     private $userSize;
     private $userSizeId;
 
+    /**
+     * SetUserSizeCommand constructor.
+     * @param $userSizeId
+     * @param $userSize
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($userSizeId, $userSize)
     {
         $this->userSize = $userSize;

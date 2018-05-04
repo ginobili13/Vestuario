@@ -15,6 +15,11 @@ class ShowUserDeliveryCommand
 {
     private $id_user;
 
+    /**
+     * ShowUserDeliveryCommand constructor.
+     * @param $id
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($id)
     {
         Assertion::notBlank($id,'Debe introducir un número de ussuario');

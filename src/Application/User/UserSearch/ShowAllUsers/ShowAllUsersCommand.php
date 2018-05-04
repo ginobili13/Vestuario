@@ -16,6 +16,12 @@ class ShowAllUsersCommand
     private $page;
     private $limit;
 
+    /**
+     * ShowAllUsersCommand constructor.
+     * @param $page
+     * @param $limit
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($page, $limit)
     {
         Assertion::notBlank($page, 'Tienes que especificar un numero de pagina');

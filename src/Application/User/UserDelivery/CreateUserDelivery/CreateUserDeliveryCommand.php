@@ -18,6 +18,14 @@ class CreateUserDeliveryCommand
     private $date_delivery;
     private $clothe_id;
 
+    /**
+     * CreateUserDeliveryCommand constructor.
+     * @param $date_delivery
+     * @param $clothe_id
+     * @param $quantity
+     * @param $user_id
+     * @throws \Assert\AssertionFailedException
+     */
     public function __construct($date_delivery,$clothe_id,$quantity,$user_id)
     {
         Assertion::notBlank($user_id,'Debe introducir un valor');
