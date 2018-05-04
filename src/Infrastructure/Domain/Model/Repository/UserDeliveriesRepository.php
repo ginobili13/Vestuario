@@ -9,7 +9,11 @@
 namespace App\Infrastructure\Domain\Model\Repository;
 
 use App\Domain\Model\Entity\UserDeliveries;
+use App\Domain\Model\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
@@ -43,11 +47,64 @@ class UserDeliveriesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function getUser($id)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+
+        try {
+            $result = $queryBuilder
+                ->select('u')
+                ->from('App:Users', 'u')
+                ->andWhere('u.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+        }
+        return $result;
+    }
+
+    public function getClothe($id)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+
+        try {
+            $result = $queryBuilder
+                ->select('c')
+                ->from('App:Clothes', 'c')
+                ->andWhere('c.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+        }
+        return $result;
+    }
+
     public function createUserDelivery(UserDeliveries $userDeliveries)
     {
-        $this->getEntityManager()->persist($userDeliveries);
-        $this->getEntityManager()->flush();
+        try {
+            $this->getEntityManager()->persist($userDeliveries);
+        } catch (ORMException $e) {
+        }
+        try {
+            $this->getEntityManager()->flush();
+        } catch (OptimisticLockException $e) {
+        } catch (ORMException $e) {
+        }
 
         return $userDeliveries;
+    }
+
+    public function DeleteUserDelivery($idUserDelivery)
+    {
+        $userDelivery = $this->find($idUserDelivery);
+
+        try {
+            $this->getEntityManager()->remove($userDelivery);
+        } catch (ORMException $e) {
+        }
+
+        $this->getEntityManager()->flush();
     }
 }

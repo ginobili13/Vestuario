@@ -26,7 +26,7 @@ class UserSizesRepository extends ServiceEntityRepository
         parent:: __construct($registry, UserSizes::class);
     }
 
-    public function getUserSize($id)
+    public function getUserSize($id): ?UserSizes
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
@@ -37,9 +37,15 @@ class UserSizesRepository extends ServiceEntityRepository
             ->andWhere('us.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
         return $result;
     }
+
+    public function updateUserSize()
+    {
+        $this->getEntityManager()->flush();
+    }
+
 
 }

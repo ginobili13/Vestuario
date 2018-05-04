@@ -25,6 +25,7 @@ class CreateUserDeliveryController extends Controller
         $user_id = (int)$request->get('user_id');
 
         $createCommand = new CreateUserDeliveryCommand($date_delivery,$clothes_id,$quantity,$user_id);
+
         $userDelivery->handle($createCommand);
 
         return new Response ('Creado correctamente');

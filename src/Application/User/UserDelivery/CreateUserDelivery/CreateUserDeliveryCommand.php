@@ -40,7 +40,7 @@ class CreateUserDeliveryCommand
     /**
      * @return mixed
      */
-    public function getIdUser()
+    public function getIdUser(): int
     {
         return $this->id_user;
     }
