@@ -43,6 +43,23 @@
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-4">
+                        <div id="history" style="display: none">
+                            <table class="table table-hover" id="tableClothe" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Prenda</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -89,6 +106,19 @@
                             var data = table.rows(indexes).data().pluck('id');
                             $('#history').css('display', 'inline-block');
                         }
+                        $.getJSON('/user/delivery/'+data[0], function (response) {
+                            $('#tableClothe tbody tr').remove();
+                           $.each(response, function (i, item) {
+                               $('#tableClothe tbody').append(
+                                   '<tr>' +
+                                       '<td>'+item.date_delivery+'</td>' +
+                                       '<td>'+item.clothe+'</td>' +
+                                       '<td>'+item.quantity+'</td>' +
+                                   '</tr>');
+
+                               console.log(response);
+                           });
+                        });
                     } );
                     $("#search_by_name").on('keyup click', function() {
                         table.column(3).search($(this).val()).draw();

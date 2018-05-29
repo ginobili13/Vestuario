@@ -14,7 +14,6 @@ App_set_userSize:
 view_all_users:
     path: /index
     controller: App\Infrastructure\Controller\User\UserSearch\ShowAllUsersController::view
-
 form_userDelivery:
     path: /delivery
     controller: App\Infrastructure\Controller\User\UserDelivery\CreateUserDeliveryController::view
