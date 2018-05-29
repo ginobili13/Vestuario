@@ -25,7 +25,7 @@ class ShowUserByEmployeeCode
 
     public function execute(ShowUserByEmployeeCodeCommand $showUserByEmployeeCodeCommand)
     {
-        //$user = $this->repository->findOneBy(['employeeCode' => 12345]);
+
         $user = $this->repository->findUserByEmployeeCode($showUserByEmployeeCodeCommand->getEmployeeCode());
 
         return $this->transform->transform($user);

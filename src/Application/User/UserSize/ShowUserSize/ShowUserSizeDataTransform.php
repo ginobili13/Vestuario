@@ -13,10 +13,7 @@ use App\Domain\Model\Entity\UserSizes;
 
 class ShowUserSizeDataTransform implements DataTransformInterface
 {
-        /**
-         * @param array|UserSizes[] $userSizes
-         * @return array
-         */
+
         public function transform(array $userSizes)
         {
             $userTransform = [];

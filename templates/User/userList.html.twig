@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}lista de usuarios{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <div class="container-fluid" style="margin-top: 20px">
+                <div class="row">
+                    <div class="col-md-2"><label>Nombre trabajador: <input type="search" id="search_by_name" placeholder="Buscar por nombre" class="form-control"></label></div>
+                    <div class="col-md-2"><label>Cod. Trabajador: <input type="search" id="search_by_code_employee" placeholder="Buscar por id" class="form-control"></label></div>
+                    <div class="col-md-2"><label>Dpto: <input type="search" id="search_by_departament" placeholder="Departamento" class="form-control"></label></div>
+                    <div class="col-md-2"><label>Sub-Dpto: <input type="search" id="search_by_subDepartment" placeholder="SubDepartamento" class="form-control"></label></div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <table id="tableUsers" class="display" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Imagen</th>
+                                <th>NIF</th>
+                                <th>Trabajador</th>
+                                <th>Cod. Trab</th>
+                                <th>N.Seg Social</th>
+                                <th>Fecha primer CCT</th>
+                                <th>Fecha Antigüedad</th>
+                                <th>Fecha Vencimiento CCT</th>
+                                <th>Posible renovacion</th>
+                                <th>Departamento</th>
+                                <th>Sub-Departamento</th>
+                                <th>Días disponibles vacaciones</th>
+                                <th>Dis pendientes solicitar</th>
+                                <th>telefono</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    var table = $('#tableUsers').DataTable( {
+                        select: true,
+                        "sAjaxSource": '/user/search',
+                        "sAjaxDataProp": "",
+                        "aoColumns": [
+                            { "mDataProp": "id" },
+                            { "mDataProp": "image" },
+                            { "mDataProp": "nif" },
+                            {"mDataProp": "name"},
+                            {"mDataProp": "employeeCode"},
+                            {"mDataProp": "socialSecurity"},
+                            {"mDataProp": "dateFirstCTT"},
+                            {"mDataProp": "dateOld"},
+                            {"mDataProp": "dateExpirationCTT"},
+                            {"mDataProp": "datePossibleRenovation"},
+                            {"mDataProp": "department"},
+                            {"mDataProp": "subDepartment"},
+                            {"mDataProp": "availableHolidays"},
+                            {"mDataProp": "daysDebtsRequest"},
+                            {"mDataProp": "phoneNumber"},
+                        ],
+                        "language": {
+                            "lengthMenu": "Mostrar _MENU_ por pagina",
+                            "zeroRecords": "No se encontraron resultados.",
+                            "info": "Mostrando pagina _PAGE_ of _PAGES_ ",
+                            "infoEmpty": "Datos no disponibles",
+                            "infoFiltered": "(filtered from _MAX_ total records)",
+                            "paginate": {
+                                "previous": "Retroceder",
+                                "next": "Siguiente"
+                            },
+                            select: {
+                                rows: "%d fila seleccionada"
+                            }
+                        }
+                    });
+                    table.on( 'select', function ( e, dt, type, indexes ) {
+                        if ( type === 'row' ) {
+                            var data = table.rows(indexes).data().pluck('id');
+                            $('#history').css('display', 'inline-block');
+                        }
+                    } );
+                    $("#search_by_name").on('keyup click', function() {
+                        table.column(3).search($(this).val()).draw();
+                    });
+                    $("#search_by_code_employee").on('keyup click', function() {
+                        table.column(4).search($(this).val()).draw();
+                    });
+                    $("#search_by_departament").on('keyup click', function() {
+                        table.column(10).search($(this).val()).draw();
+                    });
+                    $("#search_by_subDepartment").on('keyup click', function() {
+                        table.column(11).search($(this).val()).draw();
+                    });
+                } );
+            </script>
+            <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+            <script src="//cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+        {% endblock %}
+        {% endblock %}
+    </body>
+</html>

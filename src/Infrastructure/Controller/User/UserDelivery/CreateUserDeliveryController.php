@@ -30,4 +30,9 @@ class CreateUserDeliveryController extends Controller
 
         return new Response ('Creado correctamente');
     }
+
+    public function view()
+    {
+        return $this->render('User/userDeliveryForm.html.twig');
+    }
 }

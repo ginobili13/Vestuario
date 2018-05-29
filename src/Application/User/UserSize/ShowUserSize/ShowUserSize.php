@@ -21,6 +21,11 @@ class ShowUserSize
         $this->transform = $showUserSizeTransform;
     }
 
+    /**
+     * @param ShowUserSizeCommand $command
+     * @return array
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function execute(ShowUserSizeCommand $command)
     {
         $userSize = $this->repository->getUserSize($command->getIdUser());

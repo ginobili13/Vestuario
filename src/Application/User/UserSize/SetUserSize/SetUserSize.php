@@ -22,6 +22,13 @@ class SetUserSize
 
     }
 
+    /**
+     * @param SetUserSizeCommand $command
+     * @return string
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function handle(SetUserSizeCommand $command)
     {
         $userSize = $this->repository->getUserSize($command->userSizeId());

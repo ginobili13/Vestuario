@@ -31,7 +31,7 @@ class UserSizesRepository extends ServiceEntityRepository
      * @return UserSizes|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getUserSize($id): ?UserSizes
+    public function getUserSize($id): array
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
@@ -42,7 +42,7 @@ class UserSizesRepository extends ServiceEntityRepository
             ->andWhere('us.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
         return $result;
     }

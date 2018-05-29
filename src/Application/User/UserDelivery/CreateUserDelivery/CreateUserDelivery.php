@@ -23,6 +23,12 @@ class CreateUserDelivery
         $this->userDelivery = $userDeliveries;
     }
 
+    /**
+     * @param CreateUserDeliveryCommand $deliveryCommand
+     * @return string
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function handle(CreateUserDeliveryCommand $deliveryCommand)
     {
         $idUser = $deliveryCommand->getIdUser();
