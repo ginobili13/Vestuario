@@ -25,6 +25,7 @@ class ShowUserDeliveryDataTransform implements DataTransformInterface
         foreach ($userDeliveries as $userDelivery) {
 
             $userTransform []= [
+                'id' => $userDelivery->getId(),
                 'date_delivery' => $userDelivery->getDateDelivery(),
                 'clothe' => $userDelivery->getClothe()->getName(),
                 'quantity' => $userDelivery->getQuantity()
