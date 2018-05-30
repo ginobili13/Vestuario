@@ -9,13 +9,13 @@
 namespace App\Application\User\UserSearch\ShowUserByName;
 
 use App\Application\User\DataTransformInterface;
-use App\Domain\Model\Entity\Users;
+use App\Domain\Model\Entity\User\Users;
 
 class ShowUserByNameDataTransform implements DataTransformInterface
 {
     /**
      * @param array|Users[] $users
-     * @return array
+     * @return string
      */
     public function transform(array $users)
     {
@@ -43,5 +43,4 @@ class ShowUserByNameDataTransform implements DataTransformInterface
         }
         return json_encode($userTransform);
     }
-
 }

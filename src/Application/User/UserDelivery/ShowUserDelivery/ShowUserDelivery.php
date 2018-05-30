@@ -9,8 +9,7 @@
 namespace App\Application\User\UserDelivery\ShowUserDelivery;
 
 
-use App\Infrastructure\Domain\Model\Repository\UserDeliveriesRepository;
-
+use App\Domain\Model\Entity\User\UserDelivery\UserDeliveriesRepository;
 
 class ShowUserDelivery
 {
@@ -23,11 +22,10 @@ class ShowUserDelivery
         $this->repository = $repository;
     }
 
-    public function execute(ShowUserDeliveryCommand $command)
+    public function execute(ShowUserDeliveryCommand $command): string
     {
-        $userDelivery = $this->repository->getUserDelivery($command->getIdUser());
+        $userDelivery = $this->repository->findUserDeliveryOrNull($command->getIdUser());
 
         return $this->transform->transform($userDelivery);
     }
-
 }

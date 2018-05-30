@@ -1,19 +1,20 @@
 <?php
 /**
  * Created by PhpStorm.
- * Users: programador
+ * User: programador
  * Date: 24/04/18
- * Time: 11:33
+ * Time: 14:29
  */
 
-namespace App\Domain\Model\Entity;
+namespace App\Domain\Model\Entity\Department\SubDepartment;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Infrastructure\Domain\Model\Repository\DepartmentsRepository")
+ * @ORM\Entity(repositoryClass="SubDepartmentsRepository")
  */
-class Departments
+class SubDepartments
 {
     /**
      * @ORM\Id()
@@ -21,6 +22,25 @@ class Departments
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Department\Departments")
+     * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
+     */
+    private $department;
+
+    public function __construct()
+    {
+        $this->department = new ArrayCollection() ;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
 
     /**
      * @ORM\Column(type="string")
@@ -59,3 +79,4 @@ class Departments
         $this->name = $name;
     }
 }
+

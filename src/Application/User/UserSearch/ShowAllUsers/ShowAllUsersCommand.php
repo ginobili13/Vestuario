@@ -51,3 +51,4 @@ class ShowAllUsersCommand
         return $this->limit;
     }
 }
+

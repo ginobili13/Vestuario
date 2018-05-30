@@ -6,12 +6,12 @@
  * Time: 8:48
  */
 
-namespace App\Infrastructure\Domain\Model\Repository;
+namespace App\Infrastructure\Domain\Model\Repository\UserSize;
 
+use App\Domain\Model\Entity\User\UserSize\UserSizesRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use App\Domain\Model\Entity\UserSizes;
+use App\Domain\Model\Entity\User\UserSize\UserSizes;
 
 /**
  * @method UserSizes|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,7 +19,7 @@ use App\Domain\Model\Entity\UserSizes;
  * @method UserSizes[]    findAll()
  * @method UserSizes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserSizesRepository extends ServiceEntityRepository
+class UserSizesDoctrineRepository extends ServiceEntityRepository implements UserSizesRepository
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -28,22 +28,25 @@ class UserSizesRepository extends ServiceEntityRepository
 
     /**
      * @param $id
-     * @return UserSizes|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return array
+     * @throws \Exception
      */
-    public function getUserSize($id): array
+    public function findUserSizeOrNull($id): ? array
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
         $result = $queryBuilder
             ->select('us', 'clothe')
-            ->from('App:UserSizes', 'us')
+            ->from('App:User\Size\UserSizes', 'us')
             ->innerJoin('us.clothe','clothe')
             ->andWhere('us.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+
+        if(null === $result) {
+            throw new \Exception('No existe talla de usuario');
+        }
         return $result;
     }
 
@@ -51,10 +54,9 @@ class UserSizesRepository extends ServiceEntityRepository
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateUserSize()
+    public function updateUserSize(): void
     {
         $this->getEntityManager()->flush();
     }
-
-
 }
+

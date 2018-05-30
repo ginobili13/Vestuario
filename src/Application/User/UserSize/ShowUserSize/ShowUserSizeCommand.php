@@ -13,19 +13,19 @@ use Assert\Assertion;
 
 class ShowUserSizeCommand
 {
-    private $id_user;
+    private $idUser;
 
     /**
      * ShowUserSizeCommand constructor.
-     * @param $id_user
+     * @param $idUser
      * @throws \Assert\AssertionFailedException
      */
-    public function __construct($id_user)
+    public function __construct($idUser)
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
 
-        Assertion::notBlank($id_user, 'Tienes que especificar un id de usuario');
-        Assertion::numeric($id_user, 'El id del usuario no es un número');
+        Assertion::notBlank($idUser, 'Tienes que especificar un id de usuario');
+        Assertion::numeric($idUser, 'El id del usuario no es un número');
     }
 
     /**
@@ -33,6 +33,6 @@ class ShowUserSizeCommand
      */
     public function getIdUser()
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 }

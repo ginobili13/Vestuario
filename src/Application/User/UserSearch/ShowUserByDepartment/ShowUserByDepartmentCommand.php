@@ -9,21 +9,22 @@
 namespace App\Application\User\UserSearch\ShowUserByDepartment;
 
 use Assert\Assertion;
+
 class ShowUserByDepartmentCommand
 {
-    private $id_department;
+    private $idDepartment;
 
     /**
      * ShowUserByDepartmentCommand constructor.
-     * @param $id_department
+     * @param $idDepartment
      * @throws \Assert\AssertionFailedException
      */
-    public function __construct($id_department)
+    public function __construct($idDepartment)
     {
-        Assertion::notBlank($id_department, 'Tienes que especificar un numero de departamento');
-        Assertion::numeric($id_department, 'El valor no es un número');
+        Assertion::notBlank($idDepartment, 'Tienes que especificar un numero de departamento');
+        Assertion::numeric($idDepartment, 'El valor no es un número');
 
-        $this->id_department = $id_department;
+        $this->idDepartment = $idDepartment;
 
     }
 
@@ -32,7 +33,7 @@ class ShowUserByDepartmentCommand
      */
     public function getIdDepartment()
     {
-        return $this->id_department;
+        return $this->idDepartment;
     }
 
 

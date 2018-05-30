@@ -10,13 +10,13 @@ namespace App\Application\User\UserDelivery\ShowUserDelivery;
 
 
 use App\Application\User\DataTransformInterface;
-use App\Domain\Model\Entity\UserDeliveries;
+use App\Domain\Model\Entity\User\UserDeliveries;
 
 class ShowUserDeliveryDataTransform implements DataTransformInterface
 {
     /**
      * @param array|UserDeliveries[] $userDeliveries
-     * @return array
+     * @return string
      */
     public function transform(array $userDeliveries)
     {
@@ -34,3 +34,4 @@ class ShowUserDeliveryDataTransform implements DataTransformInterface
         return json_encode($userTransform);
     }
 }
+

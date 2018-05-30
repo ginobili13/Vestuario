@@ -9,7 +9,7 @@
 namespace App\Application\User\UserSearch\ShowUserBySubDepartments;
 
 
-use App\Infrastructure\Domain\Model\Repository\UsersRepository;
+use App\Domain\Model\Entity\User\UsersRepository;
 
 class ShowUserBySubDepartments
 {
@@ -22,9 +22,13 @@ class ShowUserBySubDepartments
         $this->transform = $subDepartmentsTransform;
     }
 
-    public function execute(ShowUserBySubDepartmentsCommand $subDepartmentsCommand)
+    /**
+     * @param ShowUserBySubDepartmentsCommand $subDepartmentsCommand
+     * @return string
+     */
+    public function execute(ShowUserBySubDepartmentsCommand $subDepartmentsCommand): string
     {
-        $users = $this->repository->findUsersBySubDepartments($subDepartmentsCommand->getIdSubDepartment());
+        $users = $this->repository->findUsersBySubDepartmentsOrNull($subDepartmentsCommand->getIdSubDepartment());
 
         return $this->transform->transform($users);
     }

@@ -9,40 +9,33 @@
 namespace App\Application\User\UserDelivery\CreateUserDelivery;
 
 
-use App\Domain\Model\Entity\UserDeliveries;
-use App\Infrastructure\Domain\Model\Repository\UserDeliveriesRepository;
+use App\Domain\Model\Entity\User\UserDelivery\UserDeliveriesRepository;
+use App\Domain\Model\Entity\User\UserDelivery\UserDeliveries;
 
 class CreateUserDelivery
 {
     private $repository;
-    private $userDelivery;
 
-    public function __construct(UserDeliveriesRepository $repository, UserDeliveries $userDeliveries)
+    public function __construct(UserDeliveriesRepository $repository)
     {
         $this->repository = $repository;
-        $this->userDelivery = $userDeliveries;
     }
 
-    /**
-     * @param CreateUserDeliveryCommand $deliveryCommand
-     * @return string
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function handle(CreateUserDeliveryCommand $deliveryCommand)
+
+    public function handle(CreateUserDeliveryCommand $deliveryCommand): void
     {
+        $userDelivery = new UserDeliveries();
+
         $idUser = $deliveryCommand->getIdUser();
         $idClothe = $deliveryCommand->getClotheId();
 
-        $this->userDelivery->setDateDelivery($deliveryCommand->getDateDelivery());
-        $this->userDelivery->setQuantity($deliveryCommand->getQuantity());
-        $this->userDelivery->setUser($this->repository->getUser($idUser));
-        $this->userDelivery->setClothe($this->repository->getClothe($idClothe));
+        $userDelivery->setDateDelivery($deliveryCommand->getDateDelivery());
+        $userDelivery->setQuantity($deliveryCommand->getQuantity());
+        $userDelivery->setUser($this->repository->findUserOrNull($idUser));
+        $userDelivery->setClothe($this->repository->findClotheOrNull($idClothe));
 
 
-        $this->repository->createUserDelivery($this->userDelivery);
-
-        return 'ok';
+        $this->repository->createUserDelivery($userDelivery);
 
     }
 }

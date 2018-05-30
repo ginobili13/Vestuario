@@ -9,8 +9,7 @@
 namespace App\Application\User\UserSearch\ShowUserByEmployeeCode;
 
 
-use App\Infrastructure\Domain\Model\Repository\UsersRepository;
-
+use App\Domain\Model\Entity\User\UsersRepository;
 
 class ShowUserByEmployeeCode
 {
@@ -23,10 +22,16 @@ class ShowUserByEmployeeCode
         $this->transform = $employeeCodeTransform;
     }
 
+
     public function execute(ShowUserByEmployeeCodeCommand $showUserByEmployeeCodeCommand)
     {
-
-        $user = $this->repository->findUserByEmployeeCode($showUserByEmployeeCodeCommand->getEmployeeCode());
+        $user = $this
+            ->repository
+            ->findUserByEmployeeCodeOrNull
+            (
+                $showUserByEmployeeCodeCommand
+                    ->getEmployeeCode()
+            );
 
         return $this->transform->transform($user);
     }

@@ -6,12 +6,12 @@
  * Time: 8:38
  */
 
-namespace App\Domain\Model\Entity;
+namespace App\Domain\Model\Entity\User\UserSize;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Infrastructure\Domain\Model\Repository\UserSizesRepository")
+ * @ORM\Entity(repositoryClass="UserSizesRepository")
  */
 class UserSizes
 {

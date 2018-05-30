@@ -32,6 +32,4 @@ class ShowUserByNameCommand
     {
         return $this->name;
     }
-
-
 }

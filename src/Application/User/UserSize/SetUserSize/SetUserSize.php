@@ -9,7 +9,7 @@
 namespace App\Application\User\UserSize\SetUserSize;
 
 
-use App\Infrastructure\Domain\Model\Repository\UserSizesRepository;
+use App\Domain\Model\Entity\User\UserSize\UserSizesRepository;
 
 class SetUserSize
 {
@@ -24,20 +24,15 @@ class SetUserSize
 
     /**
      * @param SetUserSizeCommand $command
-     * @return string
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function handle(SetUserSizeCommand $command)
+    public function handle(SetUserSizeCommand $command): void
     {
-        $userSize = $this->repository->getUserSize($command->userSizeId());
+        $userSize = $this->repository->findUserSizeOrNull($command->userSizeId());
 
         $userSize->setUserSize($command->userSize());
 
         $this->repository->updateUserSize();
 
-        return 'ok';
     }
-
 }
+

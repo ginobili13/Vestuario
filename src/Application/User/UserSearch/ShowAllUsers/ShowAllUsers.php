@@ -9,7 +9,7 @@
 namespace App\Application\User\UserSearch\ShowAllUsers;
 
 
-use App\Infrastructure\Domain\Model\Repository\UsersRepository;
+use App\Domain\Model\Entity\User\UsersRepository;
 
 class ShowAllUsers
 {
@@ -22,9 +22,9 @@ class ShowAllUsers
         $this->transform = $transform;
     }
 
-    public function execute(ShowAllUsersCommand $allUsersCommand)
+    public function execute(ShowAllUsersCommand $allUsersCommand): string
     {
-        $allUser = $this->repository->findAllByLimit($allUsersCommand->getLimit(),$allUsersCommand->getPage());
+        $allUser = $this->repository->findAllByLimitOrNull($allUsersCommand->getLimit(),$allUsersCommand->getPage());
 
         return $this->transform->transform($allUser);
     }

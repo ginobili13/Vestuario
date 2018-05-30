@@ -9,7 +9,7 @@
 namespace App\Application\User\UserDelivery\DeleteUserDelivery;
 
 
-use App\Infrastructure\Domain\Model\Repository\UserDeliveriesRepository;
+use App\Domain\Model\Entity\User\UserDelivery\UserDeliveriesRepository;
 
 class DeleteUserDelivery
 {
@@ -20,14 +20,11 @@ class DeleteUserDelivery
         $this->repository = $repository;
     }
 
-    public function handle(DeleteUserDeliveryCommand $command)
+    public function handle(DeleteUserDeliveryCommand $command): void
     {
-        $idUserDelivery = $command->getDeliveryId();
 
-
-        $this->repository->DeleteUserDelivery($idUserDelivery);
-
-        return 'ok';
+        $this->repository->DeleteUserDelivery($command->getDeliveryId());
 
     }
 }
+

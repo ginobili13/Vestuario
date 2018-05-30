@@ -6,12 +6,12 @@
  * Time: 8:43
  */
 
-namespace App\Domain\Model\Entity;
+namespace App\Domain\Model\Entity\User\UserDelivery;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Infrastructure\Domain\Model\Repository\UserDeliveriesRepository")
+ * @ORM\Entity(repositoryClass="UserDeliveriesRepository")
  */
 class UserDeliveries
 {
@@ -23,13 +23,13 @@ class UserDeliveries
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\User\Users")
      * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Clothes")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Clothe\Clothes")
      * @ORM\JoinColumn(name="clothes_id", referencedColumnName="id")
      */
     private $clothe;

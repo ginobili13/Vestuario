@@ -8,7 +8,7 @@
 
 namespace App\Application\User\UserSize\ShowUserSize;
 
-use App\Infrastructure\Domain\Model\Repository\UserSizesRepository;
+use App\Domain\Model\Entity\User\UserSize\UserSizesRepository;
 
 class ShowUserSize
 {
@@ -21,14 +21,10 @@ class ShowUserSize
         $this->transform = $showUserSizeTransform;
     }
 
-    /**
-     * @param ShowUserSizeCommand $command
-     * @return array
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function execute(ShowUserSizeCommand $command)
+
+    public function execute(ShowUserSizeCommand $command): array
     {
-        $userSize = $this->repository->getUserSize($command->getIdUser());
+        $userSize = $this->repository->findUserSizeOrNull($command->getIdUser());
 
         return $this->transform->transform($userSize);
     }

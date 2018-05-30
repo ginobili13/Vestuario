@@ -12,19 +12,19 @@ use Assert\Assertion;
 
 class ShowUserBySubDepartmentsCommand
 {
-    private $id_subDepartment;
+    private $idSubDepartment;
 
     /**
      * ShowUserBySubDepartmentsCommand constructor.
-     * @param $id_subDepartment
+     * @param $idSubDepartment
      * @throws \Assert\AssertionFailedException
      */
-    public function __construct($id_subDepartment)
+    public function __construct($idSubDepartment)
     {
-        $this->id_subDepartment = $id_subDepartment;
+        $this->idSubDepartment = $idSubDepartment;
 
-        Assertion::notBlank($id_subDepartment, 'Tienes que especificar un numero de departamento');
-        Assertion::numeric($id_subDepartment, 'El valor introducido no es un número');
+        Assertion::notBlank($idSubDepartment, 'Tienes que especificar un numero de departamento');
+        Assertion::numeric($idSubDepartment, 'El valor introducido no es un número');
 
     }
 
@@ -33,8 +33,6 @@ class ShowUserBySubDepartmentsCommand
      */
     public function getIdSubDepartment()
     {
-        return $this->id_subDepartment;
+        return $this->idSubDepartment;
     }
-
-
 }

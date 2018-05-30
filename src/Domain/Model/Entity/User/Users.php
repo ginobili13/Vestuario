@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Domain\Model\Entity;
+namespace App\Domain\Model\Entity\User;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Infrastructure\Domain\Model\Repository\UsersRepository")
+ * @ORM\Entity(repositoryClass="UsersRepository")
  */
 class Users
 {
@@ -38,13 +38,13 @@ class Users
     private $socialSecurity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Departments")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Department\Departments")
      * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
      */
     private $department;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\SubDepartments")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Department\SubDepartment\SubDepartments")
      * @ORM\JoinColumn(name="subDepartment_id", referencedColumnName="id")
      */
     private $subDepartment;

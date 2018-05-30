@@ -12,19 +12,19 @@ use Assert\Assertion;
 
 class ShowUserByEmployeeCodeCommand
 {
-    private $employee_code;
+    private $employeeCode;
 
     /**
      * ShowUserByEmployeeCodeCommand constructor.
-     * @param $employee_code
+     * @param $employeeCode
      * @throws \Assert\AssertionFailedException
      */
-    public function __construct($employee_code)
+    public function __construct($employeeCode)
     {
-        $this->employee_code = $employee_code;
+        $this->employeeCode = $employeeCode;
 
-        Assertion::notBlank($employee_code, 'Tienes que especificar un numero de empleado');
-        Assertion::numeric($employee_code, 'El numero de empleado, no es un número');
+        Assertion::notBlank($employeeCode, 'Tienes que especificar un numero de empleado');
+        Assertion::numeric($employeeCode, 'El numero de empleado, no es un número');
     }
 
     /**
@@ -32,8 +32,6 @@ class ShowUserByEmployeeCodeCommand
      */
     public function getEmployeeCode()
     {
-        return $this->employee_code;
+        return $this->employeeCode;
     }
-
-
 }

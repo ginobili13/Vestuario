@@ -13,36 +13,36 @@ use Assert\Assertion;
 
 class CreateUserDeliveryCommand
 {
-    private $id_user;
+    private $idUser;
     private $quantity;
-    private $date_delivery;
-    private $clothe_id;
+    private $dateDelivery;
+    private $clotheId;
 
     /**
      * CreateUserDeliveryCommand constructor.
-     * @param $date_delivery
-     * @param $clothe_id
+     * @param $dateDelivery
+     * @param $clotheId
      * @param $quantity
-     * @param $user_id
+     * @param $userId
      * @throws \Assert\AssertionFailedException
      */
-    public function __construct($date_delivery,$clothe_id,$quantity,$user_id)
+    public function __construct($dateDelivery,$clotheId,$quantity,$userId)
     {
-        Assertion::notBlank($user_id,'Debe introducir un valor');
-        Assertion::integer($user_id,'El valor introducido no es un número');
-        $this->id_user = $user_id;
+        Assertion::notBlank($userId,'Debe introducir un valor');
+        Assertion::integer($userId,'El valor introducido no es un número');
+        $this->idUser = $userId;
 
         Assertion::notBlank($quantity,'Debe introducir un valor');
         Assertion::integer($quantity,'El valor introducido no es un número');
         $this->quantity = $quantity;
 
-        Assertion::notBlank($date_delivery,'Debe introducir un valor');
+        Assertion::notBlank($dateDelivery,'Debe introducir un valor');
         //Assertion::date($date_delivery, 'Y-m-d','Introduce una fecha valida');
-        $this->date_delivery = $date_delivery;
+        $this->dateDelivery = $dateDelivery;
 
-        Assertion::notBlank($clothe_id,'Debe introducir un valor');
-        Assertion::integer($clothe_id,'El valor introducido no es un número');
-        $this->clothe_id = $clothe_id;
+        Assertion::notBlank($clotheId,'Debe introducir un valor');
+        Assertion::integer($clotheId,'El valor introducido no es un número');
+        $this->clotheId = $clotheId;
     }
 
     /**
@@ -50,7 +50,7 @@ class CreateUserDeliveryCommand
      */
     public function getIdUser(): int
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
     /**
@@ -66,7 +66,7 @@ class CreateUserDeliveryCommand
      */
     public function getDateDelivery()
     {
-        return $this->date_delivery;
+        return $this->dateDelivery;
     }
 
     /**
@@ -74,8 +74,6 @@ class CreateUserDeliveryCommand
      */
     public function getClotheId()
     {
-        return $this->clothe_id;
+        return $this->clotheId;
     }
-
-
 }

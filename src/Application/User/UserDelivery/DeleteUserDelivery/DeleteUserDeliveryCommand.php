@@ -36,6 +36,5 @@ class DeleteUserDeliveryCommand
     {
         return $this->delivery_id;
     }
-
-
 }
+

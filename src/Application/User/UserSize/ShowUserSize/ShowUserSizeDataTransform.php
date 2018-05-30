@@ -9,26 +9,28 @@
 namespace App\Application\User\UserSize\ShowUserSize;
 
 use App\Application\User\DataTransformInterface;
-use App\Domain\Model\Entity\UserSizes;
+use App\Domain\Model\Entity\User\UserSizes;
 
 class ShowUserSizeDataTransform implements DataTransformInterface
 {
+    /**
+     * @param array|userSizes[] $userSizes
+     * @return array
+     */
+    public function transform(array $userSizes)
+    {
+        $userTransform = [];
 
-        public function transform(array $userSizes)
-        {
-            $userTransform = [];
-            foreach ($userSizes as $userSize) {
+        foreach ($userSizes as $userSize) {
 
-                $userTransform [] = [
-
-                    'id' => $userSize->getId(),
-                    'clothe_name' => $userSize->getClothe()->getName(),
-                    'clothe_type' => $userSize->getClothe()->getType(),
-                    'user_size' => $userSize->getUserSize(),
-                    'user_id' => $userSize->getUserId(),
+            $userTransform [] = [
+                'id' => $userSize->getId(),
+                'clothe_name' => $userSize->getClothe()->getName(),
+                'clothe_type' => $userSize->getClothe()->getType(),
+                'user_size' => $userSize->getUserSize(),
+                'user_id' => $userSize->getUserId(),
                 ];
-            }
-            return json_encode($userTransform);
-
         }
+        return json_encode($userTransform);
     }
+}

@@ -13,7 +13,7 @@ use Assert\Assertion;
 
 class ShowUserDeliveryCommand
 {
-    private $id_user;
+    private $idUser;
 
     /**
      * ShowUserDeliveryCommand constructor.
@@ -24,7 +24,7 @@ class ShowUserDeliveryCommand
     {
         Assertion::notBlank($id,'Debe introducir un número de ussuario');
         Assertion::integer($id,'El valor introducido no es un número');
-        $this->id_user = $id;
+        $this->idUser = $id;
     }
 
     /**
@@ -32,7 +32,6 @@ class ShowUserDeliveryCommand
      */
     public function getIdUser()
     {
-        return $this->id_user;
+        return $this->idUser;
     }
-
 }

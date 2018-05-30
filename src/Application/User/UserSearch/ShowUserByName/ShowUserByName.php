@@ -8,7 +8,7 @@
 
 namespace App\Application\User\UserSearch\ShowUserByName;
 
-use App\Infrastructure\Domain\Model\Repository\UsersRepository;
+use App\Domain\Model\Entity\User\UsersRepository;
 
 class ShowUserByName
 {
@@ -21,9 +21,10 @@ class ShowUserByName
         $this->transform = $showUserByNameDataTransform;
     }
 
-    public function execute(ShowUserByNameCommand $showUserByNameCommand)
+
+    public function execute(ShowUserByNameCommand $showUserByNameCommand): string
     {
-        $user = $this->repository->findUserByName($showUserByNameCommand->getName());
+        $user = $this->repository->findUserByNameOrNull($showUserByNameCommand->getName());
 
         return $this->transform->transform($user);
     }
