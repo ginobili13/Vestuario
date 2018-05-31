@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Domain\Model\Repository\SubDepartment;
+namespace App\Infrastructure\Domain\Model\Repository\Department\SubDepartment;
 
 
 use App\Domain\Model\Entity\Department\SubDepartment\SubDepartments;

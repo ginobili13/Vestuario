@@ -6,7 +6,7 @@
  * Time: 8:48
  */
 
-namespace App\Infrastructure\Domain\Model\Repository\UserDelivery;
+namespace App\Infrastructure\Domain\Model\Repository\User\UserDelivery;
 
 use App\Domain\Model\Entity\Clothe\Clothes;
 use App\Domain\Model\Entity\User\UserDelivery\UserDeliveries;

@@ -6,7 +6,7 @@
  * Time: 8:48
  */
 
-namespace App\Infrastructure\Domain\Model\Repository\UserSize;
+namespace App\Infrastructure\Domain\Model\Repository\User\UserSize;
 
 use App\Domain\Model\Entity\User\UserSize\UserSizesRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
