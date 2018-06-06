@@ -5,18 +5,31 @@
         <title>{% block title %}lista de usuarios{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+            <style>
+                .row tbody tr.highlight td {
+                    background-color: #ccc;
+                }
+            </style>
         {% endblock %}
     </head>
     <body>
         {% block body %}
-            <div class="container-fluid" style="margin-top: 20px">
+            <div class="container" style="margin-top: 20px">
                 <div class="row">
                     <div class="col-md-2"><label>Nombre trabajador: <input type="search" id="search_by_name" placeholder="Buscar por nombre" class="form-control"></label></div>
                     <div class="col-md-2"><label>Cod. Trabajador: <input type="search" id="search_by_code_employee" placeholder="Buscar por id" class="form-control"></label></div>
                     <div class="col-md-2"><label>Dpto: <input type="search" id="search_by_departament" placeholder="Departamento" class="form-control"></label></div>
                     <div class="col-md-2"><label>Sub-Dpto: <input type="search" id="search_by_subDepartment" placeholder="SubDepartamento" class="form-control"></label></div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-1">
+                        <label>Mostrar</label>
+                        <select name="totalPerPage" class="form-control">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-10">
@@ -40,13 +53,15 @@
                                 <th>telefono</th>
                             </tr>
                             </thead>
+                            <tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-top: 20px;">
                     <div class="col-md-10 col-md-offset-4">
                         <div id="history" style="display: none">
-                            <table class="table table-hover" id="tableClothe" cellspacing="0" width="100%">
+                            <table id="tableClothe" class="table table-hover" id="tableClothe" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -65,8 +80,6 @@
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="{{ asset('js/userIndex.js') }}" type="text/javascript"></script>
-            <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-            <script src="//cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
         {% endblock %}
         {% endblock %}
     </body>

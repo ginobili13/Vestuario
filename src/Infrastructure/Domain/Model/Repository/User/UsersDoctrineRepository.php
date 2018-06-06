@@ -88,8 +88,8 @@ class UsersDoctrineRepository extends ServiceEntityRepository implements UsersRe
     public function findUserByNameOrNull($id): ? array
     {
         $result = $this->createQueryBuilder('user')
-            ->andWhere('user.name = :name')
-            ->setParameter('name', $id)
+            ->andWhere('user.name LIKE :name')
+            ->setParameter('name', '%'.$id.'%')
             ->orderBy('user.name', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
