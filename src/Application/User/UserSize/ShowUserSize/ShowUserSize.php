@@ -22,10 +22,11 @@ class ShowUserSize
     }
 
 
-    public function execute(ShowUserSizeCommand $command): array
+    public function execute(ShowUserSizeCommand $command)
     {
-        $userSize = $this->repository->findUserSizeOrNull($command->getIdUser());
+        //$userSize = $this->repository->findUserSizeByUserOrNull($command->getIdUser());
 
-        return $this->transform->transform($userSize);
+        $clothe = $this->repository->findAllClothes();
+        return $this->transform->transform($clothe);
     }
 }

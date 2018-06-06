@@ -10,13 +10,15 @@ App_delete_delivery:
     resource: 'routing/Users/UserDelivery/DeleteUserDelivery.yml'
 App_set_userSize:
     resource: 'routing/Users/UserSize/SetUserSize.yml'
+App_search_clothe:
+    resource: 'routing/Clothes/ClotheSearch.yml'
 
 view_all_users:
     path: /index
     controller: App\Infrastructure\Controller\User\UserSearch\ShowAllUsersController::view
 form_userDelivery:
-    path: /delivery
+    path: /form/delivery/{user_id}
     controller: App\Infrastructure\Controller\User\UserDelivery\CreateUserDeliveryController::view
 form_user_Size:
-    path: /user/size
-    controller: App\Infrastructure\Controller\User\UserSize\UserSizeController::view
+    path: /form/size/{user_id}
+    controller: App\Infrastructure\Controller\User\UserSize\SetUserSizeController::view

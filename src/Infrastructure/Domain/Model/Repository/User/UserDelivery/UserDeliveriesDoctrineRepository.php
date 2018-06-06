@@ -6,7 +6,7 @@
  * Time: 8:48
  */
 
-namespace App\Infrastructure\Domain\Model\Repository\UserDelivery;
+namespace App\Infrastructure\Domain\Model\Repository\User\UserDelivery;
 
 use App\Domain\Model\Entity\Clothe\Clothes;
 use App\Domain\Model\Entity\User\UserDelivery\UserDeliveries;
@@ -41,7 +41,7 @@ class UserDeliveriesDoctrineRepository extends ServiceEntityRepository implement
 
         $result = $queryBuilder
             ->select('ud')
-            ->from('App:User\Delivery\UserDeliveries', 'ud')
+            ->from('App:User\UserDelivery\UserDeliveries', 'ud')
             ->innerJoin('ud.user','user')
             ->innerJoin('ud.clothe', 'clothe')
             ->andWhere('ud.user = :id')
@@ -70,7 +70,7 @@ class UserDeliveriesDoctrineRepository extends ServiceEntityRepository implement
                 ->andWhere('u.id = :id')
                 ->setParameter('id', $id)
                 ->getQuery()
-                ->getResult();
+                ->getOneOrNullResult();
 
         if(null === $result) {
             throw new \Exception('El usuario no existe');
@@ -93,7 +93,7 @@ class UserDeliveriesDoctrineRepository extends ServiceEntityRepository implement
                 ->andWhere('c.id = :id')
                 ->setParameter('id', $id)
                 ->getQuery()
-                ->getResult();
+                ->getOneOrNullResult();
 
         if(null === $result) {
             throw new \Exception('La prenda no existe');

@@ -8,6 +8,7 @@
 
 namespace App\Domain\Model\Entity\User\UserSize;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,14 +26,17 @@ class UserSizes
     /**
      * @ORM\Column(type="integer")
      */
-    private $user_id;
+    private $userId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Clothes")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Clothe\Clothes", inversedBy="userSizes")
      * @ORM\JoinColumn(name="clothes_id", referencedColumnName="id")
      */
     private $clothe;
 
+    public function __construct() {
+        $this->clothe = new ArrayCollection();
+    }
     /**
      * @ORM\Column(type="string")
      */
@@ -59,15 +63,15 @@ class UserSizes
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
     /**
      * @param mixed $user
      */
-    public function setUserId($user_id): void
+    public function setUserId($userId): void
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
     }
 
     /**
@@ -83,7 +87,7 @@ class UserSizes
      */
     public function setClothe($clothe): void
     {
-        $this->clothe_id = $clothe;
+        $this->clothe = $clothe;
     }
 
     /**

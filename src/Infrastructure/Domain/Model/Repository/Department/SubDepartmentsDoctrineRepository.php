@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Domain\Model\Repository\SubDepartment;
+namespace App\Infrastructure\Domain\Model\Repository\Department;
 
 
 use App\Domain\Model\Entity\Department\SubDepartment\SubDepartments;
@@ -27,7 +27,7 @@ class SubDepartmentsDoctrineRepository extends ServiceEntityRepository implement
 
         $result = $queryBuilder
             ->select('sb', 'department')
-            ->from('App:Department\SubDepartment\SubDepartments', 'sb')
+            ->from('App:Department\SubDepartments', 'sb')
             ->innerJoin('sb.department', 'department')
             ->getQuery()
             ->getResult();

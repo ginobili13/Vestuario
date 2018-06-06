@@ -14,21 +14,28 @@ use Assert\Assertion;
 class SetUserSizeCommand
 {
     private $userSize;
-    private $userSizeId;
+    private $userId;
+    private $clotheId;
+
 
     /**
      * SetUserSizeCommand constructor.
-     * @param $userSizeId
+     * @param $userId
      * @param $userSize
+     * @param $clotheId
      * @throws \Assert\AssertionFailedException
      */
-    public function __construct($userSizeId, $userSize)
+    public function __construct($userId, $userSize, $clotheId)
     {
         $this->userSize = $userSize;
 
-        Assertion::notBlank($userSizeId,'Debe introducir un valor');
-        Assertion::integer($userSizeId, 'El valor introducido no es un número');
-        $this->userSizeId = $userSizeId;
+        Assertion::notBlank($userId,'Debe introducir un valor');
+        Assertion::integer($userId, 'El valor introducido no es un número');
+        $this->userId = $userId;
+
+        Assertion::notBlank($clotheId,'Debe introducir un valor');
+        Assertion::integer($clotheId, 'El valor introducido no es un número');
+        $this->clotheId = $clotheId;
     }
 
     /**
@@ -42,10 +49,19 @@ class SetUserSizeCommand
     /**
      * @return mixed
      */
-    public function userSizeId()
+    public function userId()
     {
-        return $this->userSizeId;
+        return $this->userId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function clotheId()
+    {
+        return $this->clotheId;
     }
 }
+
 
 

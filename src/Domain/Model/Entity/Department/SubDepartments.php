@@ -6,7 +6,7 @@
  * Time: 14:29
  */
 
-namespace App\Domain\Model\Entity\Department\SubDepartment;
+namespace App\Domain\Model\Entity\Department;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;

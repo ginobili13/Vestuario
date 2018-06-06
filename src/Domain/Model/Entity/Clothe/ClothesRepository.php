@@ -11,5 +11,5 @@ namespace App\Domain\Model\Entity\Clothe;
 
 interface ClothesRepository
 {
-    public function findOneOrNull();
+    public function findAllOrNull(): ? array;
 }

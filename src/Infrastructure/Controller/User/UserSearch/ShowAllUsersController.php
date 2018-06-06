@@ -12,7 +12,6 @@ namespace App\Infrastructure\Controller\User\UserSearch;
 use App\Application\User\UserSearch\ShowAllUsers\ShowAllUsers;
 use App\Application\User\UserSearch\ShowAllUsers\ShowAllUsersCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,4 +33,3 @@ class ShowAllUsersController extends Controller
         return $this->render('User/userList.html.twig');
     }
 }
-

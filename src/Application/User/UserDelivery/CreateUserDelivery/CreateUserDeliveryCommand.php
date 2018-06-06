@@ -34,6 +34,7 @@ class CreateUserDeliveryCommand
 
         Assertion::notBlank($quantity,'Debe introducir un valor');
         Assertion::integer($quantity,'El valor introducido no es un número');
+        Assertion::notEq($quantity,0,'La cantidad no puede ser 0');
         $this->quantity = $quantity;
 
         Assertion::notBlank($dateDelivery,'Debe introducir un valor');

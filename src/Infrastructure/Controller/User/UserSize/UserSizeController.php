@@ -29,9 +29,5 @@ class UserSizeController extends Controller
         return new Response($user);
 
     }
-
-    public function view()
-    {
-        return $this->render('User/userSizesForm.html.twig');
-    }
 }
+

@@ -8,6 +8,7 @@
 
 namespace App\Domain\Model\Entity\Clothe;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +32,19 @@ class Clothes
      * @ORM\Column(type="string")
      */
     private $type;
+
+    /**
+     * @return mixed
+     */
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Domain\Model\Entity\User\UserSize\UserSizes", mappedBy="clothe")
+     */
+    private $userSizes;
+
+    public function __construct() {
+        $this->userSizes = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -80,5 +94,11 @@ class Clothes
         $this->type = $type;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getUserSizes()
+    {
+        return $this->userSizes;
+    }
 }

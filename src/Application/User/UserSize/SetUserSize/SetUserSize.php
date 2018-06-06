@@ -9,6 +9,7 @@
 namespace App\Application\User\UserSize\SetUserSize;
 
 
+use App\Domain\Model\Entity\User\UserSize\UserSizes;
 use App\Domain\Model\Entity\User\UserSize\UserSizesRepository;
 
 class SetUserSize
@@ -27,11 +28,27 @@ class SetUserSize
      */
     public function handle(SetUserSizeCommand $command): void
     {
-        $userSize = $this->repository->findUserSizeOrNull($command->userSizeId());
 
-        $userSize->setUserSize($command->userSize());
+        if(0 === $this->repository->checkUserSize($command->userId(), $command->clotheId())) {
 
-        $this->repository->updateUserSize();
+            $newUserSize = new UserSizes();
+
+            $newUserSize->setUserSize($command->userSize());
+            $newUserSize->setUserId($command->userId());
+            $newUserSize->setClothe($this->repository->findClotheOrNull($command->clotheId()));
+
+            $this->repository->createUserSize($newUserSize);
+
+        } else {
+            $userSize = $this->repository->findUserSizeOrNull($command->userId(), $command->clotheId());
+
+            $userSize->setUserSize($command->userSize());
+            $userSize->setUserId($command->userId());
+            $userSize->setClothe($this->repository->findClotheOrNull($command->clotheId()));
+
+            $this->repository->updateUserSize();
+
+        }
 
     }
 }

@@ -9,27 +9,37 @@
 namespace App\Application\User\UserSize\ShowUserSize;
 
 use App\Application\User\DataTransformInterface;
-use App\Domain\Model\Entity\User\UserSizes;
+use App\Domain\Model\Entity\Clothe\Clothes;
+use App\Domain\Model\Entity\User\UserSize\UserSizes;
 
 class ShowUserSizeDataTransform implements DataTransformInterface
 {
     /**
-     * @param array|userSizes[] $userSizes
+     * @param array|Clothes[] $clothes
      * @return array
      */
-    public function transform(array $userSizes)
+    public function transform(array $clothes)
     {
         $userTransform = [];
 
-        foreach ($userSizes as $userSize) {
 
+        foreach($clothes as $clothe) {
+
+            $userSizesId = [];
+            $userSizes = [];
+            /**
+             * @var UserSizes $userSize
+             */
+            foreach($clothe->getUserSizes()->toArray() as $userSize) {
+                $userSizesId = $userSize->getUserId();
+                $userSizes = $userSize->getUserSize();
+            }
             $userTransform [] = [
-                'id' => $userSize->getId(),
-                'clothe_name' => $userSize->getClothe()->getName(),
-                'clothe_type' => $userSize->getClothe()->getType(),
-                'user_size' => $userSize->getUserSize(),
-                'user_id' => $userSize->getUserId(),
-                ];
+                'clothe_name' => $clothe->getName(),
+                'clothe_id' => $clothe->getId(),
+                'user_id' => $userSizesId,
+                'user_size' => $userSizes,
+            ];
         }
         return json_encode($userTransform);
     }

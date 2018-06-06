@@ -5,6 +5,7 @@ namespace App\Infrastructure\Domain\Model\Repository\Clothe;
 use App\Domain\Model\Entity\Clothe\Clothes;
 use App\Domain\Model\Entity\Clothe\ClothesRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use function foo\func;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -20,9 +21,20 @@ class ClothesDoctrineRepository extends ServiceEntityRepository implements Cloth
         parent::__construct($registry, Clothes::class);
     }
 
-    public function findOneOrNull()
+    /**
+     * @return array|null
+     * @throws \Exception
+     */
+    public function findAllOrNull(): ? array
     {
+        $result = $this->createQueryBuilder('clothe')
+            ->getQuery()
+            ->getResult();
 
+        if(null === $result) {
+            throw new \Exception('No existe el usuario');
+        }
+        return $result;
     }
 }
 

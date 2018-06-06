@@ -10,65 +10,39 @@
     <body>
         {% block body %}
             <div class="container">
-                        <form action="">
+                        <form id="deliveryForm" action="/create/delivery/{{ userId }}">
                             <legend>Entrega de Vestuario</legend>
                             <div class="row">
                                     <div class="col col-xs-2">
                                         <div class="form-group">
                                             <label for="date">Fecha</label>
-                                            <input type="date" class="form-control" id="fecha" name="fecha">
+                                            <input type="date" class="form-control" id="date" name="fecha">
                                         </div>
                                     </div>
                                     <div class="col col-xs-2">
                                         <div class="form-group">
-                                            <label for="camisetaMc">Camiseta MC</label>
-                                            <input type="number" value="0" class="form-control" id="camisetaMc" name="camiseta_mc">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="camisetaMl">Camiseta ML</label>
-                                            <input type="number" value="0" class="form-control" id="camisetaMl" name="camiseta_ml">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="forroPolar">Forro Polar</label>
-                                            <input type="number" value="0" class="form-control" id="forroPolar" name="forro_polar">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="poloHombreMl">Polo Hombre ML</label>
-                                            <input type="number" value="0" class="form-control" id="poloHombreMl" name="polo_hombre_ml">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="poloHombreMc">Polo Hombre MC</label>
-                                            <input type="number" value="0" class="form-control" id="poloHombreMc" name="polo_hombre_mc">
+                                            <label for="clothe">Prenda</label>
+                                            <select name="ropa" id="clothe" class="form-control">
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col col-xs-2">
                                         <div class="form-group">
-                                            <label for="poloMujerMl">Polo Mujer ML</label>
-                                            <input type="number" value="0" class="form-control" id="poloMujerMl" name="polo_mujer_ml">
+                                            <label for="quantity">Cantidad</label>
+                                            <input type="number" class="form-control" id="quantity" name="cantidad">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="poloMujerMc">Polo Mujer MC</label>
-                                            <input type="number" value="0" class="form-control" id="poloMujerMc" name="polo_mujer_ml">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cortavientos">Cortavientos</label>
-                                            <input type="number" value="0" class="form-control" id="cortavientos" name="cortavientos">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="zapatos">Zapatos</label>
-                                            <input type="number" value="0" class="form-control" id="zapatos" name="zapatos">
-                                        </div>
-                                    <div class="form-group">
-                                        <label for="chaleco">Chaleco</label>
-                                        <input type="number" value="0" class="form-control" id="chaleco" name="chaleco">
                                     </div>
-                                </div>
                             </div>
                             <div class="row">
                                     <button type="submit" class="btn btn-success">Añadir</button>
                             </div>
+                                <input type="hidden" value="{{ userId }}"/>
                         </form>
             </div>
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="{{ asset('js/userDelivery.js') }}" type="text/javascript"></script>
+        {% endblock %}
         {% endblock %}
     </body>
 </html>

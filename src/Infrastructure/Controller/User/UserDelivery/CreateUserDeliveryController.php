@@ -19,20 +19,20 @@ class CreateUserDeliveryController extends Controller
 {
     public function execute(Request $request, CreateUserDelivery $userDelivery)
     {
-        $date_delivery = (int)$request->get('date_delivery');
-        $clothes_id = (int)$request->get('clothe_id');
-        $quantity = (int)$request->get('quantity');
-        $user_id = (int)$request->get('user_id');
+        $date_delivery = (int)$request->get('fecha');
+        $clothesId = (int)$request->get('ropa');
+        $quantity = (int)$request->get('cantidad');
+        $userId = (int)$request->get('user_id');
 
-        $createCommand = new CreateUserDeliveryCommand($date_delivery,$clothes_id,$quantity,$user_id);
+        $createCommand = new CreateUserDeliveryCommand($date_delivery,$clothesId,$quantity,$userId);
 
         $userDelivery->handle($createCommand);
 
         return new Response ('Creado correctamente');
     }
 
-    public function view()
+    public function view(Request $request)
     {
-        return $this->render('User/userDeliveryForm.html.twig');
+        return $this->render('User/userDeliveryForm.html.twig', ['userId' => (int)$request->get('user_id')]);
     }
 }

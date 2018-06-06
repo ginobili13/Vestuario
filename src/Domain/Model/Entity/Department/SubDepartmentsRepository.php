@@ -6,7 +6,7 @@
  * Time: 8:39
  */
 
-namespace App\Domain\Model\Entity\Department\SubDepartment;
+namespace App\Domain\Model\Entity\Department;
 
 
 interface SubDepartmentsRepository

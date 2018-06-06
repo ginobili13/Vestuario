@@ -22,7 +22,7 @@ class ShowAllUsers
         $this->transform = $transform;
     }
 
-    public function execute(ShowAllUsersCommand $allUsersCommand): string
+    public function execute(ShowAllUsersCommand $allUsersCommand)
     {
         $allUser = $this->repository->findAllByLimitOrNull($allUsersCommand->getLimit(),$allUsersCommand->getPage());
 

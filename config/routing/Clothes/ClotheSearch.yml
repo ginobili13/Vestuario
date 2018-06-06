@@ -1,0 +1,4 @@
+search_all_clothes:
+    path: /clothe/search
+    controller: App\Infrastructure\Controller\Clothe\ShowAllClothesController::showAllClothes
+

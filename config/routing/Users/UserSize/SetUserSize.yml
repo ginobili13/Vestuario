@@ -1,4 +1,4 @@
 set_userSize:
-    path: '/set/userSize/{userSize_id}/{size}'
+    path: '/set/userSize/{user_id}'
     controller: App\Infrastructure\Controller\User\UserSize\SetUserSizeController::setUserSize
     defaults: { size : 0}

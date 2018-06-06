@@ -19,15 +19,22 @@ class SetUserSizeController extends Controller
 {
     public function setUserSize(Request $request, SetUserSize $setUserSize)
     {
-        $userSizeId = (int)$request->get('userSize_id');
-        $userSize = $request->get('size');
+        $userId = (int)$request->request->all()['userId'];
+        $userSizes = $request->request->all()['userSize'];
 
-        $userSizeCommand = new SetUserSizeCommand($userSizeId,$userSize);
+       foreach ($userSizes as $userSize) {
 
-        $setUserSize->handle($userSizeCommand);
+            $userSizeCommand = new SetUserSizeCommand($userId, $userSize['user_size'], (int)$userSize['clothes_id']);
+            $setUserSize->handle($userSizeCommand);
 
-        return new Response ('Modificado correctamente');
+        }
+
+        return new Response ($userId);
 
     }
 
+    public function view(Request $request)
+    {
+        return $this->render('User/userSizesForm.html.twig', ['userId' => (int)$request->get('user_id')]);
+    }
 }

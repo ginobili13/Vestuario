@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model\Entity\User;
 
-use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,8 +44,8 @@ class Users
     private $department;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Department\SubDepartment\SubDepartments")
-     * @ORM\JoinColumn(name="subDepartment_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Model\Entity\Department\SubDepartments")
+     * @ORM\JoinColumn(name="sub_department_id", referencedColumnName="id")
      */
     private $subDepartment;
 
@@ -320,6 +320,4 @@ class Users
     {
         $this->subDepartmentId = $subDepartment;
     }
-
-
 }
