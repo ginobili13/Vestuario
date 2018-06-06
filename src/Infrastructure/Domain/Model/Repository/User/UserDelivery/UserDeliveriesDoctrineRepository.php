@@ -41,7 +41,7 @@ class UserDeliveriesDoctrineRepository extends ServiceEntityRepository implement
 
         $result = $queryBuilder
             ->select('ud')
-            ->from('App:User\Delivery\UserDeliveries', 'ud')
+            ->from('App:User\UserDelivery\UserDeliveries', 'ud')
             ->innerJoin('ud.user','user')
             ->innerJoin('ud.clothe', 'clothe')
             ->andWhere('ud.user = :id')

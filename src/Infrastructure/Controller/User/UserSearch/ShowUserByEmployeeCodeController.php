@@ -19,10 +19,9 @@ class ShowUserByEmployeeCodeController extends Controller
 {
     public function showUserByEmployeeCode(ShowUserByEmployeeCode $showUserByEmployeeCode, Request $request)
     {
-        $employee_code = $request->get('employee_code');
+        $employee_code = (int)$request->get('employee_code');
 
         $showUserByEmployeeCodeCommand = new ShowUserByEmployeeCodeCommand($employee_code);
-
         $user = $showUserByEmployeeCode->execute($showUserByEmployeeCodeCommand);
 
         return new Response ($user);
