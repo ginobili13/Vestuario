@@ -11,5 +11,5 @@ namespace App\Domain\Model\Entity\Department;
 
 interface DepartmentsRepository
 {
-
+    public function getDepartmentId($id): ? Departments;
 }

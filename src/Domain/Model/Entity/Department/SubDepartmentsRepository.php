@@ -12,4 +12,5 @@ namespace App\Domain\Model\Entity\Department;
 interface SubDepartmentsRepository
 {
     public function findOneOrNull(): ? SubDepartments ;
+    public function getSubDepartmentId($subDepartment): ? SubDepartments;
 }

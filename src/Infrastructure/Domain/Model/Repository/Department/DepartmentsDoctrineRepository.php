@@ -25,4 +25,28 @@ class DepartmentsDoctrineRepository extends ServiceEntityRepository implements D
     {
         parent::__construct($registry, Departments::class);
     }
+
+    /**
+     * @param $department
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getDepartmentId($department): ? Departments
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+
+        $result = $queryBuilder
+            ->select('d')
+            ->from('App:Department\Departments', 'd')
+            ->andWhere('d.name LIKE :name')
+            ->setParameter('name', '%'.$department.'%')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if ($result === null) {
+            throw new \Exception('El departamento no existe');
+        }
+
+        return $result;
+    }
 }

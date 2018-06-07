@@ -3,8 +3,8 @@
 namespace App\Infrastructure\Domain\Model\Repository\Department;
 
 
-use App\Domain\Model\Entity\Department\SubDepartment\SubDepartments;
-use App\Domain\Model\Entity\Department\SubDepartment\SubDepartmentsRepository;
+use App\Domain\Model\Entity\Department\SubDepartments;
+use App\Domain\Model\Entity\Department\SubDepartmentsRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -34,6 +34,30 @@ class SubDepartmentsDoctrineRepository extends ServiceEntityRepository implement
 
         if ($result === null) {
             throw new \Exception('El subdepartamento no existe');
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param $subDepartment
+     * @return array
+     * @throws \Exception
+     */
+    public function getSubDepartmentId($subDepartment): ? SubDepartments
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+
+        $result = $queryBuilder
+            ->select('sub')
+            ->from('App:Department\SubDepartments', 'sub')
+            ->andWhere('sub.name LIKE :name')
+            ->setParameter('name', '%'.$subDepartment.'%')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if ($result === null) {
+            throw new \Exception('El subDepartamento no existe');
         }
 
         return $result;

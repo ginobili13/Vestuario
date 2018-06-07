@@ -17,7 +17,7 @@ $(document).ready(function() {
             serverRequest('/user/search');
             return false;
         }
-        serverRequest('/user/search/employeecode/'+$(this).val());
+        serverRequest('/user/search/employeeCode/'+$(this).val());
     });
 
     $("#search_by_departament").keyup(function() {
@@ -42,7 +42,7 @@ $(document).ready(function() {
         console.log($(this).find(":selected").val());
     });
 
-    $(document).on('click', '.btn.btn-danger',  function (e) {
+    $(document).on('click', '.borrar',  function (e) {
         e.preventDefault();
         var boton = $(this);
         var id = $(this).attr('data-id');
@@ -100,7 +100,7 @@ $(document).ready(function() {
                         '<td>'+item.clothe+'</td>' +
                         '<td>'+item.quantity+'</td>' +
                         '<td>' +
-                        '<a class="btn btn-danger" href="#" data-id="'+item.id+'">eliminar</a><br><a href="#">Ver pdf</a></td>' +
+                        '<a class="btn borrar" href="#" data-id="'+item.id+'">eliminar</a><br><a href="#">Ver pdf</a></td>' +
                     '</tr>');
             });
     }
@@ -109,7 +109,10 @@ $(document).ready(function() {
         $(this).addClass('highlight').siblings().removeClass('highlight');
         console.log($(this).attr('data-id'));
         $('#history').css('display', 'inline-block');
+
+        $('#sizes').attr('href', '/form/size/'+$(this).attr('data-id')).removeAttr('disabled style');
+        $('#deliveries').attr('href', '/form/delivery/'+$(this).attr('data-id')).removeAttr('disabled style');
+
         serverRequest('/user/delivery/'+$(this).attr('data-id'),true);
     });
-
 } );

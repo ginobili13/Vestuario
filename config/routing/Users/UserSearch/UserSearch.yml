@@ -1,8 +1,8 @@
 search_user_By_Department:
-    path: /user/search/department/{id_department}
+    path: /user/search/department/{department}
     controller: App\Infrastructure\Controller\User\UserSearch\ShowUserByDepartmentController::showUserByDepartment
 search_user_By_Sub_Departments:
-    path: /user/search/subDepartment/{id_subDepartment}
+    path: /user/search/subDepartment/{subDepartment}
     controller: App\Infrastructure\Controller\User\UserSearch\ShowUserBySubDepartmentController::showUserBySubDepartment
 
 search_user_By_Name:

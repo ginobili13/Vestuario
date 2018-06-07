@@ -5,6 +5,7 @@
         <title>{% block title %}lista de usuarios{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/headerCss.css') }}" type="text/css">
             <style>
                 .row tbody tr.highlight td {
                     background-color: #ccc;
@@ -13,10 +14,20 @@
         {% endblock %}
     </head>
     <body>
+    <nav class="navbar">
+        <img src="/img/pccom.png" id="ihf-logo">
+        <ul>
+            <a href="/index" class="active"><li>Home</li></a>
+            <a style="cursor: not-allowed;" id="sizes" disabled><li>Tallas</li></a>
+            <a style="cursor: not-allowed;" id="deliveries" disabled><li>Vestuario</li></a>
+        </ul>
+    </nav>
         {% block body %}
-            <div class="container" style="margin-top: 20px">
+            <h3>Listado de usuarios</h3>
+            <hr style="width: 70%">
+            <div class="container-fluid" style="margin-top: 20px">
                 <div class="row">
-                    <div class="col-md-2"><label>Nombre trabajador: <input type="search" id="search_by_name" placeholder="Buscar por nombre" class="form-control"></label></div>
+                    <div class="col-md-2 col-md-offset-1"><label>Nombre trabajador: <input type="search" id="search_by_name" placeholder="Buscar por nombre" class="form-control"></label></div>
                     <div class="col-md-2"><label>Cod. Trabajador: <input type="search" id="search_by_code_employee" placeholder="Buscar por id" class="form-control"></label></div>
                     <div class="col-md-2"><label>Dpto: <input type="search" id="search_by_departament" placeholder="Departamento" class="form-control"></label></div>
                     <div class="col-md-2"><label>Sub-Dpto: <input type="search" id="search_by_subDepartment" placeholder="SubDepartamento" class="form-control"></label></div>
@@ -29,28 +40,27 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class="col-md-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10">
-                        <table id="tableUsers" class="display" cellspacing="0" width="100%">
+                    <div class="col-md-12">
+                        <table id="tableUsers" style="margin-top:60px" class="display table table-striped">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Imagen</th>
-                                <th>NIF</th>
-                                <th>Trabajador</th>
-                                <th>Cod. Trab</th>
-                                <th>N.Seg Social</th>
-                                <th>Fecha primer CCT</th>
-                                <th>Fecha Antigüedad</th>
-                                <th>Fecha Vencimiento CCT</th>
-                                <th>Posible renovacion</th>
-                                <th>Departamento</th>
-                                <th>Sub-Departamento</th>
-                                <th>Días disponibles vacaciones</th>
-                                <th>Dis pendientes solicitar</th>
-                                <th>telefono</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">NIF</th>
+                                <th scope="col">Trabajador</th>
+                                <th scope="col">Cod. Trab</th>
+                                <th scope="col">N.Seg Social</th>
+                                <th scope="col">Fecha primer CCT</th>
+                                <th scope="col">Fecha Antigüedad</th>
+                                <th scope="col">Fecha Vencimiento CCT</th>
+                                <th scope="col">Posible renovacion</th>
+                                <th scope="col">Departamento</th>
+                                <th scope="col">Sub-Departamento</th>
+                                <th scope="col">Días disponibles vacaciones</th>
+                                <th scope="col">Días pendientes solicitar</th>
+                                <th scope="col">telefono</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,7 +71,7 @@
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-md-10 col-md-offset-4">
                         <div id="history" style="display: none">
-                            <table id="tableClothe" class="table table-hover" id="tableClothe" cellspacing="0" width="100%">
+                            <table id="tableClothe" class="table table-striped" id="tableClothe" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
